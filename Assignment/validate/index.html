@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script src="./validate.js"></script>
+    <style>
+        input {
+            border: 3px solid black;
+            margin: 10px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="welcome.html" onsubmit="return submitForm(event)">
+        <h2>Form Validation</h2>
+        <input id="name" type="text" placeholder="Name" oninput="validateName()">
+        <br>
+        <input id="fatherName" type="text" placeholder="Father's Name" oninput="validateFatherName()">
+        <br>
+        <input id="email" type="text" placeholder="Email" oninput="validateEmail()">
+        <br>
+        <input id="address" type="text" placeholder="Current Address" oninput="validateAddress()">
+        <br>
+        <input id="place" type="text" placeholder="Place" oninput="validatePlace()">
+        <br>
+        <input id="dob" type="date" placeholder="DD/MM/YYYY" oninput="validateDOB()">
+        <br>
+        <input id="zip" type="number" placeholder="Zip Code" oninput="validateZip()">
+        <input id="profileImg" type="file">
+        <button id="uploadImg" onclick="uploadFile()">Upload Image</button>
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
