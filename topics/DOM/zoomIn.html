@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom In Zoom Out</title>
+    <script>
+        var width = 100;
+        var difference = 2;
+        //For Interval
+        var increaseInterval;
+
+        function increase() {
+            //Clearing Interval before starting
+            clearInterval(increaseInterval);
+            //Expanding Image
+            increaseInterval = window.setInterval(expand, 20);
+        }
+
+        function decrease() {
+            clearInterval(increaseInterval);
+            //Shrinking Image
+            increaseInterval = window.setInterval(shrink, 20);
+        }
+
+        function expand() {
+            //If width of image is lesser than 200 expand 
+            //Until 200 it expands then clear interval
+            if (width < 200) {
+                width = width + difference;
+                document.getElementById("imgId").style.width = width+"px";
+            }
+            else {
+                clearInterval(increaseInterval);
+            }
+        }
+
+        function shrink() {
+            //If width of image is greater than 100 it shrinks 
+            //Until 100 it shrinks then clear interval
+            if (width > 100) {
+                width = width - difference;
+                document.getElementById("imgId").style.width = width+"px";
+            }
+            else {
+                clearInterval(decreaseInterval);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <img src="./assets/beans.jpg" id="imgId" onmouseover="increase()" onmouseout="decrease()" width="100">
+</body>
+
+</html>

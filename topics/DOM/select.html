@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select JS</title>
+    <script>
+        function fn1() {
+            var select = document.getElementById("selectedbox");
+            alert(select.value);
+        }
+    </script>
+</head>
+
+<body>
+    <select id="selectedbox" multiple>
+        <option value="Marvel">Marvel</option>
+        <option value="DC">DC</option>
+        <option value="Comics">Comics</option>
+    </select>
+    <button onclick="fn1()">Submit</button>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Phone Number</title>
+    <script>
+        function validation() {
+            //Getting Value using ID
+            var phoneNumber = document.getElementById("phNumber").value;
+
+            var regex = /^[6-9]\d{9}$/;
+            if (regex.test(phoneNumber)) {
+                //Return true if regex is valid
+                document.getElementById("lbId").style.visibility = "visible";
+                document.getElementById("lbId").innerHTML = "Phone Number Valid";
+                document.getElementById("lbId").style.color = "green";
+            }
+            else {
+                //Return false if username invalid
+                document.getElementById("lbId").style.visibility = "visible";
+                document.getElementById("lbId").innerHTML = "Phone Number Invalid";
+                document.getElementById("lbId").style.color = "red";
+                // return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- onsubmit the validation returns a boolean if true action is performed -->
+
+    <input type="text" id="phNumber" placeholder="Phone Number">
+    <label id="lbId" style="color: red;visibility: hidden;">Invalid</label>
+    <br><br>
+    <button onclick="validation()">Submit</button>
+
+</body>
+
+
+
+
+</html>
+
+
+    
+

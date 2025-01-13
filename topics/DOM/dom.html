@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <title>JavaScript | DOM</title>
+
+    <script type="text/javascript">
+        function fn1() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if (username == "prem" && password == "Hello") {
+                alert("Login sucessful");
+            }
+            else {
+                alert("Login Failed")
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>JavaScript</h1>
+    <input type="text" id="username" placeholder="Username">
+    <br>
+    <input type="password" id="password" placeholder="password">
+    <br>
+    <button onclick="fn1()">Click Me</button>
+
+</body>
+
+</html>

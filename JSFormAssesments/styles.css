@@ -1,0 +1,194 @@
+.form-page
+{
+    display: block;
+    width: 50%;
+    height: 160vh;
+    margin: 0 auto;
+    border: 2px solid black;
+    padding: 0px 40px;
+}
+
+.heading
+{
+    border: 2px solid black;
+    text-align: center;
+    padding-top: 20px;
+    height: 10vh;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 20px 60px;
+}
+
+.name{
+    width: 40px;
+}
+
+.nametextfield
+{
+    display: flex;
+    flex-direction: row;
+}
+.namefield
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.textfield
+{
+    margin: 0 100px;
+}
+.errmsg
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+span
+{
+    color: red;
+    font-size: 0.7rem;
+}
+.genderfield
+{
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: end;
+}
+.genderradio
+{
+    margin:0 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: end;
+}
+.address
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 30px 30px;
+}
+.addresscol
+{
+    display: flex;
+    flex-direction: column;
+}
+.addressrow
+{
+    display: flex;
+    flex-direction: row;
+}
+textarea
+{
+    width: 200px;
+    height: 18vh;
+}
+.permanent
+{
+    margin-left: 150px;
+}
+
+.pincode
+{
+    justify-content: start;
+    margin: 30px 30px;
+    display: flex;
+    flex-direction: row;
+}
+.premanentpincode
+{
+    margin-left: 190px;
+}
+
+.state
+{
+    justify-content: start;
+    margin: 30px 30px;
+    display: flex;
+    flex-direction: row;
+}
+.presentstate
+{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+.permanentstate
+{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    margin-left: 260px;
+}
+.dateofbirth
+{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    margin-left: 30px;
+}
+.datetime
+{
+    justify-content: start;
+    display: flex;
+    flex-direction: row;
+}
+.dateoftime
+{
+    margin-left: 260px;
+}
+
+.language
+{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin: 30px 30px;
+}
+.languagerow
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.language-interest
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+}
+.interest
+{
+    margin: 30px 30px;
+}
+.upload
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+}
+.uploadResume
+{
+    margin-left: 120px;
+}
+.btns
+{
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+}
+
+.usertable
+{
+    display: none;
+}

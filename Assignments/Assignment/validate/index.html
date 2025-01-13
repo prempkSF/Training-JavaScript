@@ -25,13 +25,12 @@
         <br>
         <input id="address" type="text" placeholder="Current Address" oninput="validateAddress()">
         <br>
-        <input id="place" type="text" placeholder="Place" oninput="validatePlace()">
+        <input id="place" type="text" placeholder="Place" oninput="validatePlace()" readonly>
         <br>
         <input id="dob" type="date" placeholder="DD/MM/YYYY" oninput="validateDOB()">
         <br>
         <input id="zip" type="number" placeholder="Zip Code" oninput="validateZip()">
-        <input id="profileImg" type="file">
-        <button id="uploadImg" onclick="uploadFile()">Upload Image</button>
+        <input id="profileImg" type="file" oninput="uploadFile()" required>
         <br>
         <br>
         <input type="submit" value="Submit">

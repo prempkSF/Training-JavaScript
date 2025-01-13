@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Over JS</title>
+    <script>
+        function setnewImage()
+        {
+            document.getElementById("hover-img").src="./assets/brinjal.jpg";
+        }
+
+        function setoldImage()
+        {
+            document.getElementById("hover-img").src="./assets/beans.jpg";
+        }
+    </script>
+</head>
+
+<body>
+    <img id="hover-img" src="./assets/beans.jpg" width="300px" onmouseover="setnewImage()" onmouseout="setoldImage()">
+</body>
+
+</html>

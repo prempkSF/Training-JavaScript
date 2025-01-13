@@ -6,25 +6,24 @@ let addressValid = false;
 let placeValid = false;
 let dobValid = false;
 let zipValid = false;
-
+let fileUpload = false;
 
 function validateName() {
     var name = document.getElementById("name");
     //Name Regex to Include all character other than 0-9
     var regex = /^[a-zA-Z\.@]+$/;
-    var validName = document.getElementById("validName");
 
     name.addEventListener("input", function () {
         var inputText = name.value;
         if (regex.test(inputText)) {
             name.style.borderColor = "green"
             name.style.outlineColor = "green"
-            setFlag(true);
+            nameValid = true;
         }
         else {
             name.style.borderColor = "red"
             name.style.outlineColor = "red"
-            setFlag(false);
+            nameValid = false;
         }
     });
 }
@@ -40,12 +39,12 @@ function validateFatherName() {
         if (regex.test(inputText)) {
             fatherName.style.borderColor = "green"
             fatherName.style.outlineColor = "green"
-            setFlag(true);
+            fatherNameValid - true;
         }
         else {
             fatherName.style.borderColor = "red"
             fatherName.style.outlineColor = "red"
-            setFlag(false);
+            fatherNameValid = false;
         }
     });
 }
@@ -55,18 +54,19 @@ function validateEmail() {
     //Email Regex of 4 different Section
     //prem@syncfusion.com.io
     var regex = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,8})(.[a-z]{2-8})?$/;
+    // /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,8})(.[a-z]{2-8})?$/
 
     input.addEventListener("input", function () {
         var inputText = input.value;
         if (regex.test(inputText)) {
             input.style.borderColor = "green";
             input.style.outlineColor = "green";
-            setFlag(true);
+            emailValid = true;
         }
         else {
             input.style.borderColor = "red";
             input.style.outlineColor = "red";
-            setFlag(false);
+            emailValid = false;
         }
     });
 }
@@ -82,12 +82,12 @@ function validateAddress() {
         if (regex.test(inputText)) {
             input.style.borderColor = "green";
             input.style.outlineColor = "green";
-            setFlag(true);
+            addressValid = true;
         }
         else {
             input.style.borderColor = "red";
             input.style.outlineColor = "red";
-            setFlag(false);
+            addressValid = false;
         }
     });
 }
@@ -102,12 +102,12 @@ function validatePlace() {
         if (regex.test(inputText)) {
             input.style.borderColor = "green";
             input.style.outlineColor = "green";
-            setFlag(true);
+            placeValid = true;
         }
         else {
             input.style.borderColor = "red";
             input.style.outlineColor = "red";
-            setFlag(false);
+            placeValid = false;
         }
     });
 }
@@ -118,7 +118,7 @@ function validateDOB() {
     //Date Regex 
     //Check Year of 1900 to 2099
     //Date 01-31 Month 01-12
-    var regex = /^(19|20)[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+    var regex = /^(19|20)[0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[1|2][0-9]|3[01])$/;
 
     input.addEventListener("input", function () {
         var inputText = input.value;
@@ -130,7 +130,7 @@ function validateDOB() {
         else {
             input.style.borderColor = "red";
             input.style.outlineColor = "red";
-            setFlag(false);
+            dobValid = false;
         }
     });
 }
@@ -146,19 +146,19 @@ function validateZip() {
         if (regex.test(inputText)) {
             input.style.borderColor = "green";
             input.style.outlineColor = "green";
-            setFlag(true);
+            zipValid = true;
         }
         else {
             input.style.borderColor = "red";
             input.style.outlineColor = "red";
-            setFlag(false);
+            zipValid = false;
         }
     });
 }
 
 
 function uploadFile() {
-    document.getElementById('uploadImg').addEventListener('click', () => {
+    document.getElementById('profileImg').addEventListener('input', () => {
         const fileInput = document.getElementById('profileImg');
         const file = fileInput.files[0];
 
@@ -168,31 +168,38 @@ function uploadFile() {
                 const blob = new Blob([reader.result], { type: file.type });
 
             };
+            localStorage.setItem("img" ,file );
+
             reader.readAsArrayBuffer(file);
-            setFlag(true);
+            console.log(fileUpload)
+            fileUpload = true;
         } else {
             alert('Please select a file first.');
-            setFlag(false);
+            fileUpload = false;
         }
     });
 }
 
 function submitForm(event) {
     // Validate all fields before submitting
-    validateName();
-    validateFatherName();
-    validateEmail();
-    validateAddress();
-    validatePlace();
-    validateDOB();
-    validateZip();
-
+    // validateName();
+    // validateFatherName();
+    // validateEmail();
+    // validateAddress();
+    // validatePlace();
+    // validateDOB();
+    // validateZip();
+    // uploadFile();
     // If any validation fails, prevent form submission
-    if (!(nameValid && fatherNameValid && emailValid && addressValid && placeValid && dobValid && zipValid)) {
+    if (!(nameValid && fatherNameValid && emailValid && addressValid && placeValid && dobValid && zipValid && fileUpload)) {
         event.preventDefault();
         alert("Please fill out the form correctly.");
-        return false; 
+        return false;
     }
-    
-    return true; 
+    else
+    {
+        return true;
+    }
+
+   
 }

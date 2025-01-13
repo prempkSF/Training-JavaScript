@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class JS</title>
+    <script>
+        function fn1() {
+            //returns all the html element with the specified element
+            //returns a array
+            var tags = document.getElementsByClassName("para");
+            for (let i = 0; i < tags.length; i++) {
+                tags[i].style.fontSize = "30px";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p class="para">Lorem, ipsum dolor .</p>
+    <p class="para">Lorem, ipsum dolor.</p>
+    <p>Lorem, ipsum dolor.</p>
+    <p>Lorem, ipsum dolor.</p>
+    <p class="para">Lorem, ipsum dolor.</p>
+    <button onclick="fn1()">Submit</button>
+</body>
+
+</html>

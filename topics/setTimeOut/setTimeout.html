@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeOut</title>
+    <script>
+        var id;
+        var seconds=0;
+        function printMsg() {
+            document.getElementById("textId").innerHTML = seconds+" Seconds";
+            seconds++;
+        }
+
+        function start() {
+            id=window.setInterval(printMsg,1000);
+        }
+
+        function stop(){
+            window.clearInterval(id);
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="start()">Start</button>
+    <h2 id="textId">Start Seconds</h2>
+    <button onclick="stop()">Stop</button>
+</body>
+
+</html>

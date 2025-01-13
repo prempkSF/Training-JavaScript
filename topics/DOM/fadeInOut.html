@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fade In Out</title>
+    <script>
+        var opacity;
+        var fadeOutTimeInterval;
+        var fadeInTimeInterval;
+        function fadeOutInterval() {
+            fadeOutTimeInterval= window.setInterval(fadeOut,200);
+        }
+        function fadeOut() {
+            //Get Image Id
+            var img = document.getElementById("imgId");
+            //Get the Opacity Property using different method
+            opacity = Number(window.getComputedStyle(img).getPropertyValue("opacity"));
+            console.log(opacity);
+            //If opacity is 0 image disappers
+            //Checking condition
+            if (opacity > 0) {
+                //If greater than zero increase
+                opacity = opacity - 0.1;
+                img.style.opacity = opacity;
+            }
+            else
+            {
+                //0 Reached Clear Interval
+                window.clearInterval(fadeOutTimeInterval);
+            }
+            
+        }
+
+        function fadeInInterval() {
+            fadeInTimeInterval= window.setInterval(fadeIn,200);
+        }
+
+        function fadeIn() {
+            var img = document.getElementById("imgId");
+            opacity = Number(window.getComputedStyle(img).getPropertyValue("opacity"));
+            console.log(opacity);
+            //Less than 1
+            if (opacity < 1) {
+                //Increase Opacity to view image
+                opacity = opacity + 0.1;
+                img.style.opacity = opacity;
+            }
+            else
+            {
+                //If 1 reached clear interval
+                window.clearInterval(fadeInTimeInterval);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="fadeOutInterval()">Fade Out</button>
+    <img id="imgId" src="./assets/beans.jpg">
+    <button onclick="fadeInInterval()">Fade In</button>
+</body>
+
+</html>

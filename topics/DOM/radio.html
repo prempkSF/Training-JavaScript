@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio JS</title>
+    <script>
+        function fn1() {
+            var rd1 = document.getElementById("rd1");
+            var rd2 = document.getElementById("rd2");
+            if (rd1.checked == true) {
+                alert(rd1.value);
+            }
+            else if (rd2.checked == true) {
+                alert(rd2.value);
+            }
+            else {
+                alert("No Choice is selected")
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="radio" id="rd1" name="grp1" value="Fiction">Fiction
+    <br>
+    <input type="radio" id="rd2" name="grp1" value="Non-Fiction">Non-Fiction
+    <br>
+    <button onclick="fn1()">Submit</button>
+</body>
+
+</html>

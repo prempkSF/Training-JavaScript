@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./main.js"></script>
+    <title>Form JS</title>
+</head>
+
+<body>
+    <div class="form-page">
+        <div class="heading">
+            User Registration Form
+        </div>
+        <div class="namefield">
+            <div class="name">Name:</div>
+            <div class="nametextfield">
+                <div class="errmsg">
+                    <input type="text" id="firstname" class="textfield" placeholder="First Name"
+                        oninput="validateName(`firstname`,`validfirstname`,true)">
+                    <span id="validfirstname" style="color: red;"></span>
+                </div>
+                <div class="errmsg">
+                    <input type="text" id="lastname" placeholder="Last Name"
+                        oninput="validateName(`lastname`,`validlastname`,false)">
+                    <span id="validlastname" style="color: red;"></span>
+                </div>
+            </div>
+        </div>
+        <div class="namefield">
+            <div class="name">Contact:</div>
+            <div class="nametextfield">
+                <div class="errmsg">
+                    <input type="text" id="email" class="textfield" placeholder="Email ID"
+                        oninput="validateEmail(`email`,`validemail`)">
+                    <span id="validemail"></span>
+                </div>
+                <div class="errmsg">
+                    <input type="text" id="phone" placeholder="Phone Number"
+                        oninput="validatePhoneNumber(`phone`,`validphonenumber`)">
+                    <span id="validphonenumber"></span>
+                </div>
+            </div>
+        </div>
+        <div class="namefield">
+            <div class="name">Password:</div>
+            <div class="nametextfield">
+                <div class="errmsg">
+                    <input type="text" class="textfield" id="password" placeholder="Password">
+                    <span id="validpassword"></span>
+                </div>
+                <div class="errmsg">
+                    <input type="text" id="confirmpassword" placeholder="Confirm Password"
+                        oninput="validatePassword(`password`,`validpassword`,`confirmpassword`,`validconfirmpassword`)">
+                    <span id="validconfirmpassword"></span>
+                </div>
+            </div>
+        </div>
+        <div class="gender">
+            <div class="genderfield">
+                <div class="genderhead">
+                    Gender:
+                </div>
+                <span id="validgender"></span>
+            </div>
+            <div class="genderradio">
+                <input type="radio" id="gendermale" value="Male" name="genderradio"
+                    onclick="validategender(`gendermale`,`validgender`)">Male
+                <input type="radio" id="genderfemale" value="Female" name="genderradio"
+                    onclick="validategender(`genderfemale`,`validgender`)">Female
+                <input type="radio" id="genderothers" value="Others" name="genderradio"
+                    onclick="validategender(`genderothers`,`validgender`)">Others
+            </div>
+        </div>
+        <div class="address">
+            <div class="present">
+                <div class="addresscol">
+                    <div class="presenthead">
+                        Present Address:
+                    </div>
+                    <textarea name="presentAddress" id="presentaddress" oninput="address(`presentaddress`,true)"></textarea>
+                    <span id="validpresentaddress"></span>
+                </div>
+            </div>
+            <div class="permanent">
+                <div class="addressrow">
+                    <div class="premanenthead">
+                        Permanent Adress:
+                    </div>
+                    <input type="checkbox" value="true" id="sameaddress" onclick="sameaddress()">
+                    <div class="sameaddresstext">Same as present address</div>
+                </div>
+                <textarea name="permanentAddress" id="permanentaddress" oninput="address(`permanentaddress`,false)" ></textarea>
+                <span id="validpermanentaddress"></span>
+            </div>
+        </div>
+        <div class="pincode">
+            <div class="presentpincode">
+                <div class="presentpinhead">
+                    Pincode:
+                </div>
+                <div class="errmsg">
+                    <input type="number" id="presentpincode"
+                        oninput="validatepincode(`presentpincode`,`validpresentpincode`,true)">
+                    <span id="validpresentpincode"></span>
+                </div>
+            </div>
+            <div class="premanentpincode">
+                <div class="premanentpinhead">
+                    Pincode:
+                </div>
+                <div class="errmsg">
+                    <input type="number" id="permanentpincode"
+                        oninput="validatepincode(`permanentpincode`,`validpermanentpincode`,false)">
+                    <span id="validpermanentpincode"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="state">
+            <div class="presentstate">
+                Present State:
+                <div class="errmsg">
+                    <select name="presentstate" id="presentstate" onchange="validateState(`presentstate`,`validpresentstate`,true)">
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    </select>
+                    <span id="validpresentstate"></span>
+                </div>
+            </div>
+            <div class="permanentstate">
+                Permanent State:
+                <div class="errmsg">
+                    <select name="permanentstate" id="permanentstate"
+                        onchange="validateState(`permanentstate`,`validpermanentstate`,false)">
+                        <option class="permanentstate" value="Tamil Nadu">Tamil Nadu</option>
+                        <option class="permanentstate" value="Kerala">Kerala</option>
+                        <option class="permanentstate" value="Andhra Pradesh">Andhra Pradesh</option>
+                    </select>
+                    <span id="validpermanentstate"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="datetime">
+            <div class="dateofbirth">
+                Date of Birth:
+                <div class="errmsg">
+                    <input type="date" id="dateofbirth" oninput="validDateofBirth(`dateofbirth`,`validdateofbirth`)">
+                    <span id="validdateofbirth"></span>
+                </div>
+            </div>
+            <div class="dateoftime">
+                Birth Time:
+                <div class="errmsg">
+                    <input type="time" id="dateoftime" oninput="validBirthTime(`dateoftime`,`validdatetime`)">
+                    <span id="validdatetime"></span>
+                </div>
+            </div>
+        </div>
+        <div class="language-interest">
+            <div class="language" >
+                Languages
+
+                <div class="languagerow"><input class="selectedlanguage" type="checkbox" id="tamil" value="Tamil"
+                        onclick="validateLanguage(`validlanguage`)"> Tamil</div>
+                <div class="languagerow"><input class="selectedlanguage" type="checkbox" id="english" value="English"
+                        onclick="validateLanguage(`validlanguage`)"> English</div>
+                <div class="languagerow"><input class="selectedlanguage" type="checkbox" id="french" value="French"
+                        onclick="validateLanguage(`validlanguage`)"> French</div>
+                <span id="validlanguage"></span>
+            </div>
+
+            <div class="interest">
+                <div class="interesttext" style="text-align: left;">Select your field of interest</div>
+                <select id="interestsfield" multiple onchange="validateInterest(`validinterest`)">
+                    <option class="interests" value="Music">Music</option>
+                    <option class="interests" class="interests" value="Dancing">Dancing</option>
+                    <option class="interests" value="Singing">Singing</option>
+                    <option class="interests" value="cycling">Cyclying</option>
+                </select>
+                <span id="validinterest"></span>
+            </div>
+        </div>
+        <div class="upload">
+            <div class="uploadImage">
+                Upload your Photo:
+                <input type="file" id="img" oninput="fileUpload(`img`,`validimg`,true)">
+                <br>
+                <span id="validimg"></span>
+            </div>
+            <div class="uploadResume">
+                Upload your Resume:
+                <input type="file" id="resume" oninput="fileUpload(`resume`,`validfile`,false)">
+                <br>
+                <span id="validfile"></span>
+            </div>
+        </div>
+        <div class="btns">
+            <button onclick="submitForm()">Submit</button>
+            <button style="margin-left: 30px;">Reset</button>
+        </div>
+
+    </div>
+    <div class="usertable">
+        <h1>User Details</h1>
+        <table>
+
+        </table>
+    </div>
+</body>
+
+</html>

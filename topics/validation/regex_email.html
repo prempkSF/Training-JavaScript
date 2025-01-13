@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Email</title>
+    <script>
+        function validation() {
+            //Getting Value using ID
+            var emailId = document.getElementById("email").value;
+            //varun786@syncfusion.com
+            //First part of the string of email so using ()
+            //Can be any character [a-z A-Z 0-9] to include . add \. and hyphen - 
+            //To mention more than one character instead of limit {2,9} use + which means minimum 1 character
+            //? is for the optional part
+            //() is used for separate section
+            var regex = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,8})(.[a-z]{2-8})?$/;
+            if (regex.test(emailId)) {
+                //Return true if regex is valid
+                document.getElementById("lbId").style.visibility = "visible";
+                document.getElementById("lbId").innerHTML = "Email ID Valid";
+                document.getElementById("lbId").style.color = "green";
+            }
+            else {
+                //Return false if username invalid
+                document.getElementById("lbId").style.visibility = "visible";
+                document.getElementById("lbId").innerHTML = "Email ID Invalid";
+                document.getElementById("lbId").style.color = "red";
+                // return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- onsubmit the validation returns a boolean if true action is performed -->
+
+    <input type="text" id="email" placeholder="Email">
+    <label id="lbId" style="color: red;visibility: hidden;">Invalid</label>
+    <br><br>
+    <button onclick="validation()">Submit</button>
+
+</body>
+
+
+
+
+</html>
+
+
+    
+

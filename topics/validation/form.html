@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script>
+        function validation() {
+            //Getting Value using ID
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+            if (username.value.trim() == "") {
+                username.style.border = "2px solid red";
+                document.getElementById("lbId").style.visibility = "visible";
+                document.getElementById("lbId").innerHTML = "Username Empty";
+                //Return false if no value
+                return false;
+            }
+            else if (password.value.trim() == "") {
+                document.getElementById("lbId").style.visibility = "hidden";
+                username.style.border = "0px solid black";
+
+                document.getElementById("lbpassword").style.visibility = "visible";
+                document.getElementById("lbpassword").innerHTML = "Password Empty";
+                password.style.border = "2px solid red";
+                return false;
+            }
+            else if (password.value.length < 5) {
+                document.getElementById("lbId").style.visibility = "hidden";
+                username.style.border = "0px solid black";
+
+                document.getElementById("lbpassword").style.visibility = "visible";
+                document.getElementById("lbpassword").innerHTML = "Password Length Short";
+                password.style.border = "2px solid red";
+                return false;
+            }
+            else {
+                //Return true if valid
+                return true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- onsubmit the validation returns a boolean if true action is performed -->
+    <form onsubmit="return validation()" action="welcome.html">
+        <input type="text" id="username" placeholder="Username">
+        <label id="lbId" style="color: red;visibility: hidden;">Invalid</label>
+        <br><br>
+        <input type="text" id="password" placeholder="Password">
+        <label id="lbpassword" style="color: red;visibility: hidden;">Invalid</label>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
