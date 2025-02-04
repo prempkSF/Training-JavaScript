@@ -1,23 +1,6 @@
-var userfirstname;
-var userlastname;
-var useremail;
-var userphoneNumber;
-var userpassword;
-var userconfirmpassword;
-var usergender;
-var userpresentAddress;
-var userpermanentAddress;
-var userpresentPincode;
-var userpermanentPincode;
-var userpresentState;
-var userpremanentState;
-var userdateofBirth;
-var userbirthTime;
-var userlanguages;
-var userInterests;
-var userbirthTime;
-var userImgFile;
-var userResume;
+var userfirstname, userlastname, useremail, userphoneNumber, userpassword, userconfirmpassword, usergender;
+var userpresentAddress, userpermanentAddress, userpresentPincode, userpermanentPincode, userpresentState, userpremanentState, userdateofBirth;
+var userbirthTime, userlanguages, userInterests, userbirthTime, userImgFile, userResume;
 var validArray = [
     { id: "firstname", validId: "validfirstname", errmsg: "* Firstname is required", isValid: false, isborder: true },
     { id: "lastname", validId: "validlastname", errmsg: "* Lastname is required", isValid: false, isborder: true },
@@ -25,7 +8,7 @@ var validArray = [
     { id: "phone", validId: "validphonenumber", errmsg: "*Enter valid Phone Number", isValid: false, isborder: true },
     { id: "password", validId: "validpassword", errmsg: "*Enter valid Password", isValid: false, isborder: true },
     { id: "confirmpassword", validId: "validconfirmpassword", errmsg: "* Enter valid Password", isValid: false, isborder: true },
-    { id: "gendermale", validId: "validgender", errmsg: "* Gender is required", isValid: false, isborder: true },
+    { id: "gender", validId: "validgender", errmsg: "* Gender is required", isValid: false, isborder: false },
     { id: "presentaddress", validId: "validpresentaddress", errmsg: "* Present Address is required", isValid: false, isborder: true },
     { id: "permanentaddress", validId: "validpermanentaddress", errmsg: "* Permanent Address is required", isValid: false, isborder: true },
     { id: "presentpincode", validId: "validpresentpincode", errmsg: "* Pincode is required", isValid: false, isborder: true },
@@ -127,32 +110,29 @@ function validatePassword(idpassword, validpassword, idconfirmpassword, validcon
             userpassword = document.getElementById(idpassword).value;
             userconfirmpassword = document.getElementById(idpassword).value;
             isValidId(idpassword);
-            isValidId(confirmpassword);
+            isValidId(idconfirmpassword);
         }
         else {
             confirmpassword.style.outlineColor = "red";
             password.style.outlineColor = "red";
             document.getElementById(validpassword).innerHTML = `*Enter valid Password`;
             document.getElementById(validconfirmpassword).innerHTML = `*Enter valid Password`;
-            validategender(`gendermale`, `validgender`)
         }
     });
 
 }
 
 function validategender(id, validId) {
-    var genderid = document.getElementById(id);
-    genderid.addEventListener("input", function () {
-
-        if (genderid.checked == true) {
-            document.getElementById(validId).innerHTML = "";
-            usergender = genderid.value;
-            isValidId(id);
-        }
-        else {
-            document.getElementById(validId).innerHTML = "*Gender is Required";
-        }
-    })
+    var gender = Array.from(document.querySelectorAll(`.${id}:checked`).values()).map((value) => value.value);
+    if (gender.length <= 0) {
+        document.getElementById(validId).innerHTML = `*Choose Gender`
+    }
+    else {
+        document.getElementById(validId).innerHTML = "";
+        usergender = gender;
+        console.log(gender);
+        isValidId(id);
+    }
 }
 
 
@@ -170,7 +150,7 @@ function address(addressId, isPresent) {
     });
 }
 
-function sameaddress() {
+function sameAddress() {
     var sameAddress = document.getElementById("sameaddress");
     if (sameAddress.checked === true) {
         document.getElementById("permanentaddress").innerHTML = document.getElementById("presentaddress").value;
@@ -244,14 +224,14 @@ function validDateofBirth(id, validId) {
 
 function validBirthTime(id, validId) {
     var datetime = document.getElementById(id);
-    userbirthTime = datetime.value;
-    if(userbirthTime)
-    {
-        
+    if (datetime.value) {
+        var [h, m] = datetime.value.split(":");
+        userbirthTime = (h % 12 ? h % 12 : 12) + ":" + m, h >= 12 ? 'PM' : 'AM';
+        datetime.style.outlineColor = "green";
+        datetime.style.borderColor = "green";
+        isValidId(id);
     }
-    datetime.style.outlineColor = "green";
-    datetime.style.borderColor = "green";
-    isValidId(id);
+
 }
 
 function validateState(id, validId, present) {
@@ -303,20 +283,69 @@ function fileUpload(id, validId, isImg) {
     var fileInput = document.getElementById(id);
     var file = fileInput.files[0];
     if (file) {
+
         if (isImg) {
-            userImgFile = file;
-            isValidId(id);
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                userImgFile = e.target.result;
+                document.getElementById("userimg").src = e.target.result;
+                isValidId(id);
+            }
+
+            reader.readAsDataURL(file);
+
         }
         else {
-            userResume = file;
-            isValidId(id);
+            var filesData = [];
+
+            document.getElementById(id).addEventListener('change', function (e) {
+                var files = e.target.files;
+
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var reader = new FileReader();
+
+                    reader.onload = (function (file) {
+                        return function (e) {
+                            filesData.push({
+                                name: file.name,
+                                data: e.target.result
+                            });
+
+                            var listItem = document.createElement('li');
+                            listItem.textContent = file.name;
+
+                            var downloadBtn = document.createElement('button');
+                            downloadBtn.textContent = 'Download';
+                            downloadBtn.onclick = (function (fileData) {
+                                return function () {
+                                    var a = document.createElement('a');
+                                    a.href = fileData.data;
+                                    a.download = fileData.name;
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                };
+                            })(filesData[filesData.length - 1]);
+
+                            listItem.appendChild(downloadBtn);
+                            document.getElementById('userresume').appendChild(listItem);
+                        };
+                    })(file);
+
+                    reader.readAsDataURL(file);
+                    isValidId(id);
+                }
+            });
+
         }
     }
     else {
         document.getElementById(validId).innerHTML = "File Required";
     }
 }
-function submitForm() {
+function submitForm(event) {
+    event.preventDefault();
     console.log(
         userfirstname,
         userlastname,
@@ -347,11 +376,26 @@ function submitForm() {
         }
     });
 
-    if(isSubmitValid)
-    {
+    if (isSubmitValid) {
         alert("Form Submitted Successfully");
+        //Assign Values
+        document.getElementById("username").innerHTML = userfirstname + " " + userlastname;
+        document.getElementById("useremail").innerHTML = useremail;
+        document.getElementById("userphone").innerHTML = userphoneNumber;
+        document.getElementById("userpassword").innerHTML = userconfirmpassword;
+        document.getElementById("usergender").innerHTML = usergender;
+        document.getElementById("useraddress").innerHTML = userpresentAddress;
+        document.getElementById("userdob").innerHTML = userdateofBirth;
+        document.getElementById("userbirthtime").innerHTML = userbirthTime;
+        document.getElementById("userlanguage").innerHTML = userlanguages.toString();
+        document.getElementById("userinterest").innerHTML = userInterests.toString();
+
+
+        //Hide Form and Show Table
         document.getElementById("form-page").style.display = "none";
         document.getElementById("usertable").style.display = "block";
+
+
     }
 
 }
@@ -371,4 +415,12 @@ function isValidId(id) {
             element.isValid = true;
         }
     });
+}
+
+function backbtn()
+{
+    //Hide Table and Show Form
+    
+    document.getElementById("usertable").style.display = "none";
+    document.getElementById("form-page").style.display = "block";
 }

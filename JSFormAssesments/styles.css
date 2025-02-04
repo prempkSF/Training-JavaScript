@@ -1,4 +1,4 @@
-.form-page
+#form-page
 {
     display: block;
     width: 50%;
@@ -188,7 +188,14 @@ textarea
     margin: 30px;
 }
 
-.usertable
+#usertable
 {
+    margin: 0 auto;
+    width: 50%;
     display: none;
+}
+
+table{
+    width: 700px;
+    height: 100vh;
 }

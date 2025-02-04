@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    <div class="form-page">
+    <div id="form-page">
+        <form id="my-form">
         <div class="heading">
             User Registration Form
         </div>
@@ -48,11 +49,11 @@
             <div class="name">Password:</div>
             <div class="nametextfield">
                 <div class="errmsg">
-                    <input type="text" class="textfield" id="password" placeholder="Password">
+                    <input type="password" class="textfield" id="password" placeholder="Password" >
                     <span id="validpassword"></span>
                 </div>
                 <div class="errmsg">
-                    <input type="text" id="confirmpassword" placeholder="Confirm Password"
+                    <input type="password" id="confirmpassword" placeholder="Confirm Password" 
                         oninput="validatePassword(`password`,`validpassword`,`confirmpassword`,`validconfirmpassword`)">
                     <span id="validconfirmpassword"></span>
                 </div>
@@ -66,12 +67,12 @@
                 <span id="validgender"></span>
             </div>
             <div class="genderradio">
-                <input type="radio" id="gendermale" value="Male" name="genderradio"
-                    onclick="validategender(`gendermale`,`validgender`)">Male
-                <input type="radio" id="genderfemale" value="Female" name="genderradio"
-                    onclick="validategender(`genderfemale`,`validgender`)">Female
-                <input type="radio" id="genderothers" value="Others" name="genderradio"
-                    onclick="validategender(`genderothers`,`validgender`)">Others
+                <input type="radio" class="gender" value="Male" name="genderradio"
+                    onclick="validategender(`gender`,`validgender`)">Male
+                <input type="radio" class="gender" value="Female" name="genderradio"
+                    onclick="validategender(`gender`,`validgender`)">Female
+                <input type="radio" class="gender" value="Others" name="genderradio"
+                    onclick="validategender(`gender`,`validgender`)">Others
             </div>
         </div>
         <div class="address">
@@ -89,7 +90,7 @@
                     <div class="premanenthead">
                         Permanent Adress:
                     </div>
-                    <input type="checkbox" value="true" id="sameaddress" onclick="sameaddress()">
+                    <input type="checkbox" value="true" id="sameaddress" onclick="sameAddress()">
                     <div class="sameaddresstext">Same as present address</div>
                 </div>
                 <textarea name="permanentAddress" id="permanentaddress" oninput="address(`permanentaddress`,false)" ></textarea>
@@ -134,9 +135,9 @@
             <div class="permanentstate">
                 Permanent State:
                 <div class="errmsg">
-                    <select name="permanentstate" id="permanentstate"
+                    <select name="permanentstate" id="permanentstate" 
                         onchange="validateState(`permanentstate`,`validpermanentstate`,false)">
-                        <option class="permanentstate" value="Tamil Nadu">Tamil Nadu</option>
+                        <option class="permanentstate" value="Tamil Nadu" >Tamil Nadu</option>
                         <option class="permanentstate" value="Kerala">Kerala</option>
                         <option class="permanentstate" value="Andhra Pradesh">Andhra Pradesh</option>
                     </select>
@@ -165,7 +166,7 @@
             <div class="language" >
                 Languages
 
-                <div class="languagerow"><input class="selectedlanguage" type="checkbox" id="tamil" value="Tamil"
+                <div class="languagerow"><input class="selectedlanguage" type="checkbox" id="tamil" value="Tamil" 
                         onclick="validateLanguage(`validlanguage`)"> Tamil</div>
                 <div class="languagerow"><input class="selectedlanguage" type="checkbox" id="english" value="English"
                         onclick="validateLanguage(`validlanguage`)"> English</div>
@@ -200,16 +201,64 @@
             </div>
         </div>
         <div class="btns">
-            <button onclick="submitForm()">Submit</button>
-            <button style="margin-left: 30px;">Reset</button>
+            <input type="submit" value="Submit" onclick="submitForm(event)">
+            <input type="reset" value="Reset" style="margin:  0px 30px;">
         </div>
-
+    </form>
     </div>
-    <div class="usertable">
-        <h1>User Details</h1>
-        <table>
-
+    <div id="usertable">
+        <h1 style="text-align: center;">User Details</h1>
+        <table border="3px" cellpadding="5px" cellspacing="3px">
+            <tr>
+                <th>USERNAME</th>
+                <td id="username"></td>
+            </tr>
+            <tr>
+                <th>EMAIL ID</th>
+                <td id="useremail"></td>
+            </tr>
+            <tr>
+                <th>PHONE NUMBER</th>
+                <td id="userphone"></td>
+            </tr>
+            <tr>
+                <th>PASSWORD</th>
+                <td id="userpassword"></td>
+            </tr>
+            <tr>
+                <th>GENDER</th>
+                <td id="usergender"></td>
+            </tr>
+            <tr>
+                <th>CURRENT ADDRESS</th>
+                <td id="useraddress"></td>
+            </tr>
+            <tr>
+                <th>Date OF BIRTH</th>
+                <td id="userdob"></td>
+            </tr>
+            <tr>
+                <th>TIME</th>
+                <td id="userbirthtime"></td>
+            </tr>
+            <tr>
+                <th>LANGUAGE</th>
+                <td id="userlanguage"></td>
+            </tr>
+            <tr>
+                <th>FIELD OF INTEREST</th>
+                <td id="userinterest"></td>
+            </tr>
+            <tr>
+                <th>UPLOAD YOUR PICTURE</th>
+                <td><img id="userimg" style="height: 250px; width: 250px;" ></td>
+            </tr>
+            <tr>
+                <th>UPLOAD YOUR RESUME</th>
+                <td id="userresume"></td>
+            </tr>
         </table>
+        <div class="backbutton" onclick="backbtn()" style="text-align: center; margin: 30px;"><button>Back</button></div>
     </div>
 </body>
 
